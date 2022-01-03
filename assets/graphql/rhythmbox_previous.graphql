@@ -1,0 +1,26 @@
+mutation {
+  instances {
+    entities {
+      update(
+        id: "9a0920f0-6b8f-4d96-8270-551dc222909f",
+        properties: [
+          {
+            name: "spawn",
+            value: [
+              "--previous"
+            ]
+          }
+        ]
+      ) {
+        id,
+        type {name},
+        properties(
+          names: [
+            "spawn",
+            "stdout"
+          ]
+        )
+      }
+    }
+  }
+}
