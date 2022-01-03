@@ -1,0 +1,32 @@
+mutation {
+  instances {
+    entities {
+      update(
+        id: "57cd91ba-b437-4ba9-b274-b5e1ad4abbe5",
+        properties: [
+          {
+            name: "spawn",
+            value: [
+              "-l",
+              "-a"
+            ]
+          }
+        ]
+      ) {
+        id,
+        type {name},
+        properties(
+          names: [
+            "name",
+            "current_dir",
+            "command",
+            "spawn",
+            "stdin",
+            "stdout",
+            "stderr"
+          ]
+        )
+      }
+    }
+  }
+}
