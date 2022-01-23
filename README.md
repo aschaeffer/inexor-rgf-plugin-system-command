@@ -13,7 +13,7 @@
 * Inexor will be a new first-person shooter game which is based on a new octree-based game engine.
 * Inexor focuses on classic gameplay as we've seen in Cube2 or the Quake series.
 * Inexor will be written from ground up new in C++17 and Rust.
-* You can contribute anything you want: code, content, ideas..
+* You can contribute anything you want: code, content, ideas...
 * Inexor and all its content is 100% open source!
 
 ### About Inexor Reactive Graph Flow
@@ -41,6 +41,14 @@ This plugin allows executing system commands.
 
 [<img src="https://img.shields.io/github/license/aschaeffer/inexor-rgf-plugin-system-command">](https://github.com/aschaeffer/inexor-rgf-plugin-system-command/blob/main/LICENSE)
 [<img src="https://img.shields.io/discord/698219248954376256?logo=discord">](https://discord.com/invite/acUW8k7)
+
+#### Platform Compatibility
+
+| Platform | Compatibility |
+|----------|---------------|
+| Linux    | ✓             |
+| MacOS    | ✓             |
+| Windows  | ✓             |
 
 #### Type System
 
