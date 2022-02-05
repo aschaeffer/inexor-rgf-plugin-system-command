@@ -1,9 +1,9 @@
 use std::sync::Arc;
 
+use crate::di::*;
 use async_trait::async_trait;
 use log::debug;
 use uuid::Uuid;
-use waiter_di::*;
 
 use crate::behaviour::entity::system_command::SystemCommand;
 use crate::model::ReactiveEntityInstance;
@@ -14,7 +14,7 @@ const SYSTEM_COMMAND: &'static str = "system_command";
 #[wrapper]
 pub struct SystemCommandStorage(std::sync::RwLock<std::collections::HashMap<Uuid, std::sync::Arc<SystemCommand>>>);
 
-#[waiter_di::provides]
+#[provides]
 fn create_system_command_storage() -> SystemCommandStorage {
     SystemCommandStorage(std::sync::RwLock::new(std::collections::HashMap::new()))
 }
