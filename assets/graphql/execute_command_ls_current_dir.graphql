@@ -25,7 +25,10 @@ mutation {
             "stdout",
             "stderr"
           ]
-        )
+        ) {
+          name
+          value
+        }
       }
     }
   }

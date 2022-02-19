@@ -2,7 +2,7 @@ mutation {
   instances {
     entities {
       create(
-        typeName: "system_command",
+        type: "system_command",
         id: "57cd91ba-b437-4ba9-b274-b5e1ad4abbe5",
         properties: [
           {
@@ -47,7 +47,10 @@ mutation {
             "stdout",
             "stderr"
           ]
-        )
+        ) {
+          name
+          value
+        }
       }
     }
   }
