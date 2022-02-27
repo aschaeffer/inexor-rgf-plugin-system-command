@@ -9,7 +9,7 @@ use crate::behaviour::entity::system_command::SystemCommand;
 use crate::model::ReactiveEntityInstance;
 use crate::plugins::EntityBehaviourProvider;
 
-const SYSTEM_COMMAND: &'static str = "system_command";
+const SYSTEM_COMMAND: &str = "system_command";
 
 #[wrapper]
 pub struct SystemCommandStorage(std::sync::RwLock<std::collections::HashMap<Uuid, std::sync::Arc<SystemCommand>>>);
@@ -50,9 +50,8 @@ impl SystemCommandEntityBehaviourProviderImpl {
 impl SystemCommandEntityBehaviourProvider for SystemCommandEntityBehaviourProviderImpl {
     fn create_system_command(&self, entity_instance: Arc<ReactiveEntityInstance>) {
         let id = entity_instance.id;
-        let device_key = SystemCommand::new(entity_instance.clone());
-        if device_key.is_ok() {
-            let system_command = Arc::new(device_key.unwrap());
+        if let Ok(device_key) = SystemCommand::new(entity_instance.clone()) {
+            let system_command = Arc::new(device_key);
             self.system_command.0.write().unwrap().insert(id, system_command);
             entity_instance.add_behaviour(SYSTEM_COMMAND);
             debug!("Added behaviour {} to entity instance {}", SYSTEM_COMMAND, id);
