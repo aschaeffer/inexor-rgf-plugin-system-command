@@ -50,16 +50,18 @@ impl SystemCommandEntityBehaviourProviderImpl {
 impl SystemCommandEntityBehaviourProvider for SystemCommandEntityBehaviourProviderImpl {
     fn create_system_command(&self, entity_instance: Arc<ReactiveEntityInstance>) {
         let id = entity_instance.id;
-        let device_key = SystemCommand::new(entity_instance);
+        let device_key = SystemCommand::new(entity_instance.clone());
         if device_key.is_ok() {
             let system_command = Arc::new(device_key.unwrap());
             self.system_command.0.write().unwrap().insert(id, system_command);
+            entity_instance.add_behaviour(SYSTEM_COMMAND);
             debug!("Added behaviour {} to entity instance {}", SYSTEM_COMMAND, id);
         }
     }
 
     fn remove_system_command(&self, entity_instance: Arc<ReactiveEntityInstance>) {
         self.system_command.0.write().unwrap().remove(&entity_instance.id);
+        entity_instance.remove_behaviour(SYSTEM_COMMAND);
         debug!("Removed behaviour {} from entity instance {}", SYSTEM_COMMAND, entity_instance.id);
     }
 
