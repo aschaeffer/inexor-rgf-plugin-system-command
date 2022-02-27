@@ -11,7 +11,7 @@ use crate::model::ReactiveEntityInstance;
 use crate::reactive::entity::Disconnectable;
 use crate::reactive::BehaviourCreationError;
 
-pub const SYSTEM_COMMAND: &'static str = "system_command";
+pub const SYSTEM_COMMAND: &str = "system_command";
 
 pub struct SystemCommand {
     pub entity: Arc<ReactiveEntityInstance>,
@@ -24,14 +24,14 @@ impl SystemCommand {
         let command = e.properties.get(SystemCommandProperties::COMMAND.as_ref());
         if command.is_none() {
             error!("Missing property: command");
-            return Err(BehaviourCreationError.into());
+            return Err(BehaviourCreationError);
         }
         let command = command.unwrap().as_string().unwrap();
 
         let spawn = e.properties.get(SystemCommandProperties::SPAWN.as_ref());
         if spawn.is_none() {
             error!("Missing property: spawn");
-            return Err(BehaviourCreationError.into());
+            return Err(BehaviourCreationError);
         }
 
         let entity = e.clone();
@@ -57,9 +57,7 @@ impl SystemCommand {
                             command.arg(arg);
                         }
                     }
-                    let output = command.output();
-                    if output.is_ok() {
-                        let output = output.unwrap();
+                    if let Ok(output) = command.output() {
                         let stdout = String::from_utf8(output.stdout);
                         if stdout.is_ok() {
                             entity.set(SystemCommandProperties::STDOUT, json!(stdout.unwrap()));
@@ -83,9 +81,8 @@ impl SystemCommand {
 
 impl Disconnectable for SystemCommand {
     fn disconnect(&self) {
-        let property = self.entity.properties.get(SystemCommandProperties::SPAWN.as_ref());
-        if property.is_some() {
-            property.unwrap().stream.read().unwrap().remove(self.handle_id);
+        if let Some(property) = self.entity.properties.get(SystemCommandProperties::SPAWN.as_ref()) {
+            property.stream.read().unwrap().remove(self.handle_id);
         }
     }
 }
