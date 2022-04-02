@@ -1,7 +1,10 @@
-use indradb::{Identifier, NamedProperty};
-use inexor_rgf_core_reactive::NamedProperties;
-use serde_json::{json, Value};
+use indradb::Identifier;
+use indradb::NamedProperty;
+use serde_json::json;
+use serde_json::Value;
 use strum_macros::{AsRefStr, Display, IntoStaticStr};
+
+use crate::reactive::NamedProperties;
 
 #[allow(non_camel_case_types)]
 #[derive(AsRefStr, IntoStaticStr, Display)]
@@ -12,8 +15,10 @@ pub enum SystemCommandProperties {
     CURRENT_DIR,
     #[strum(serialize = "command")]
     COMMAND,
-    #[strum(serialize = "spawn")]
-    SPAWN,
+    #[strum(serialize = "parameters")]
+    PARAMETERS,
+    #[strum(serialize = "trigger")]
+    TRIGGER,
     #[strum(serialize = "stdin")]
     STDIN,
     #[strum(serialize = "stdout")]
@@ -28,7 +33,8 @@ impl SystemCommandProperties {
             SystemCommandProperties::NAME => json!(""),
             SystemCommandProperties::CURRENT_DIR => json!(""),
             SystemCommandProperties::COMMAND => json!(""),
-            SystemCommandProperties::SPAWN => json!([]),
+            SystemCommandProperties::PARAMETERS => json!([]),
+            SystemCommandProperties::TRIGGER => json!(false),
             SystemCommandProperties::STDIN => json!(""),
             SystemCommandProperties::STDOUT => json!(""),
             SystemCommandProperties::STDERR => json!(""),
@@ -39,7 +45,8 @@ impl SystemCommandProperties {
             NamedProperty::from(SystemCommandProperties::NAME),
             NamedProperty::from(SystemCommandProperties::CURRENT_DIR),
             NamedProperty::from(SystemCommandProperties::COMMAND),
-            NamedProperty::from(SystemCommandProperties::SPAWN),
+            NamedProperty::from(SystemCommandProperties::PARAMETERS),
+            NamedProperty::from(SystemCommandProperties::TRIGGER),
             NamedProperty::from(SystemCommandProperties::STDIN),
             NamedProperty::from(SystemCommandProperties::STDOUT),
             NamedProperty::from(SystemCommandProperties::STDERR),

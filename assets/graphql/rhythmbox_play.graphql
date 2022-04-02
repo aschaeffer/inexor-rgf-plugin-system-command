@@ -5,18 +5,24 @@ mutation {
         id: "9a0920f0-6b8f-4d96-8270-551dc222909f",
         properties: [
           {
-            name: "spawn",
+            name: "parameters",
             value: [
               "--play"
             ]
+          },
+          {
+            name: "trigger",
+            value: true
           }
         ]
       ) {
-        id,
-        type {name},
+        id
+        type {
+          name
+        }
         properties(
           names: [
-            "spawn",
+            "parameters",
             "stdout"
           ]
         ) {

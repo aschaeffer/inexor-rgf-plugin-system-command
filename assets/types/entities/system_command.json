@@ -1,43 +1,13 @@
 {
   "name": "system_command",
   "group": "os",
-  "description": "Represents an input command",
+  "description": "Executes a system command",
   "components": [
     "named",
-    "flow_2d",
-    "flow_3d"
+    "system_command",
+    "action"
   ],
   "properties": [
-    {
-      "name": "current_dir",
-      "data_type": "string",
-      "socket_type": "none"
-    },
-    {
-      "name": "command",
-      "data_type": "string",
-      "socket_type": "none"
-    },
-    {
-      "name": "spawn",
-      "data_type": "array",
-      "socket_type": "input"
-    },
-    {
-      "name": "stdin",
-      "data_type": "string",
-      "socket_type": "input"
-    },
-    {
-      "name": "stdout",
-      "data_type": "string",
-      "socket_type": "output"
-    },
-    {
-      "name": "stderr",
-      "data_type": "string",
-      "socket_type": "output"
-    }
   ],
   "extensions": [
     {

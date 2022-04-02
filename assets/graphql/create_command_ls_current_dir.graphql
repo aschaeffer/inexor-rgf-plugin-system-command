@@ -18,8 +18,11 @@ mutation {
             value: "ls"
           },
           {
-            name: "spawn",
-            value: []
+            name: "parameters",
+            value: [
+              "-l",
+              "-a"
+            ]
           },
           {
             name: "stdin",
@@ -35,17 +38,20 @@ mutation {
           }
         ]
       ) {
-        id,
-        type {name},
+        id
+        type {
+          name
+        }
         properties(
           names: [
             "name",
             "current_dir",
             "command",
-            "spawn",
+            "parameters",
             "stdin",
             "stdout",
-            "stderr"
+            "stderr",
+            "trigger"
           ]
         ) {
           name

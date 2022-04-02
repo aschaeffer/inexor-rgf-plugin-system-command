@@ -5,25 +5,32 @@ mutation {
         id: "57cd91ba-b437-4ba9-b274-b5e1ad4abbe5",
         properties: [
           {
-            name: "spawn",
+            name: "parameters",
             value: [
               "-l",
               "-a"
             ]
+          },
+          {
+            name: "trigger",
+            value: true
           }
         ]
       ) {
-        id,
-        type {name},
+        id
+        type {
+          name
+        }
         properties(
           names: [
             "name",
             "current_dir",
             "command",
-            "spawn",
+            "parameters",
             "stdin",
             "stdout",
-            "stderr"
+            "stderr",
+            "trigger"
           ]
         ) {
           name

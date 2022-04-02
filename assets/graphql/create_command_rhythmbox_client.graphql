@@ -18,7 +18,7 @@ mutation {
             value: "rhythmbox-client"
           },
           {
-            name: "spawn",
+            name: "parameters",
             value: []
           },
           {
@@ -35,14 +35,16 @@ mutation {
           }
         ]
       ) {
-        id,
-        type {name},
+        id
+        type {
+          name
+        }
         properties(
           names: [
             "name",
             "current_dir",
             "command",
-            "spawn",
+            "parameters",
             "stdin",
             "stdout",
             "stderr"

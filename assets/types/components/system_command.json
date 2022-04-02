@@ -1,0 +1,47 @@
+{
+  "name": "system_command",
+  "group": "os",
+  "description": "Executes a system command",
+  "properties": [
+    {
+      "name": "current_dir",
+      "data_type": "string",
+      "socket_type": "none"
+    },
+    {
+      "name": "command",
+      "data_type": "string",
+      "socket_type": "none"
+    },
+    {
+      "name": "parameters",
+      "data_type": "array",
+      "socket_type": "input"
+    },
+    {
+      "name": "stdin",
+      "data_type": "string",
+      "socket_type": "input"
+    },
+    {
+      "name": "stdout",
+      "data_type": "string",
+      "socket_type": "output"
+    },
+    {
+      "name": "stderr",
+      "data_type": "string",
+      "socket_type": "output"
+    }
+  ],
+  "extensions": [
+    {
+      "name": "dublin-core",
+      "extension":{
+        "title": "System Command",
+        "subject": "Executes a system command",
+        "creator": "Hanack"
+      }
+    }
+  ]
+}
