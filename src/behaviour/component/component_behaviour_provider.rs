@@ -50,7 +50,6 @@ impl SystemCommandComponentBehaviourProviderImpl {
 impl SystemCommandComponentBehaviourProvider for SystemCommandComponentBehaviourProviderImpl {
     fn create_system_command(&self, entity_instance: Arc<ReactiveEntityInstance>) {
         let id = entity_instance.id;
-        debug!("x");
         match SystemCommand::new(entity_instance.clone()) {
             Ok(system_command) => {
                 self.system_command.0.write().unwrap().insert(id, Arc::new(system_command));
@@ -90,15 +89,6 @@ impl ComponentBehaviourProvider for SystemCommandComponentBehaviourProviderImpl 
         }
     }
 
-    // fn add_behaviours_to_relation(&self, relation_instance: Arc<ReactiveRelationInstance>) {}
-
-    // fn add_behaviours_to_relation_component(
-    //     &self,
-    //     relation_instance: Arc<ReactiveRelationInstance>,
-    //     component: crate::model::Component,
-    // ) {
-    // }
-
     fn remove_behaviours_from_entity(&self, entity_instance: Arc<ReactiveEntityInstance>) {
         if entity_instance.behaves_as(SYSTEM_COMMAND) {
             self.remove_system_command(entity_instance);
@@ -111,18 +101,7 @@ impl ComponentBehaviourProvider for SystemCommandComponentBehaviourProviderImpl 
         }
     }
 
-    // fn remove_behaviours_from_relation(&self, relation_instance: Arc<ReactiveRelationInstance>) {}
-
-    // fn remove_behaviours_from_relation_component(
-    //     &self,
-    //     relation_instance: Arc<ReactiveRelationInstance>,
-    //     component: crate::model::Component,
-    // ) {
-    // }
-
     fn remove_behaviours_by_id(&self, id: Uuid) {
         self.remove_by_id(id);
     }
-
-    // fn remove_behaviours_by_key(&self, edge_key: EdgeKey) {}
 }
