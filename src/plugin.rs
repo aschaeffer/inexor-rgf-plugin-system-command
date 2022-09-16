@@ -1,5 +1,6 @@
 use std::env;
-use std::sync::{Arc, RwLock};
+use std::sync::Arc;
+use std::sync::RwLock;
 
 use async_trait::async_trait;
 use log::debug;
@@ -22,7 +23,7 @@ use crate::provider::SystemCommandComponentProviderImpl;
 use crate::provider::SystemCommandEntityTypeProviderImpl;
 
 #[wrapper]
-pub struct PluginContextContainer(RwLock<Option<std::sync::Arc<dyn PluginContext>>>);
+pub struct PluginContextContainer(RwLock<Option<Arc<dyn PluginContext>>>);
 
 #[provides]
 fn create_empty_plugin_context_container() -> PluginContextContainer {

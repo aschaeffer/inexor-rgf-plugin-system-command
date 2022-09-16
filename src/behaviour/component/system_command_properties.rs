@@ -31,7 +31,7 @@ impl SystemCommandProperties {
     pub fn default_value(&self) -> Value {
         match self {
             SystemCommandProperties::NAME => json!(""),
-            SystemCommandProperties::CURRENT_DIR => json!(""),
+            SystemCommandProperties::CURRENT_DIR => json!("."),
             SystemCommandProperties::COMMAND => json!(""),
             SystemCommandProperties::PARAMETERS => json!([]),
             SystemCommandProperties::TRIGGER => json!(false),

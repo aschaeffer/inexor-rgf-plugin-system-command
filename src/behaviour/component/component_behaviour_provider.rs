@@ -29,21 +29,14 @@ pub trait SystemCommandComponentBehaviourProvider: ComponentBehaviourProvider + 
     fn remove_by_id(&self, id: Uuid);
 }
 
+#[component]
 pub struct SystemCommandComponentBehaviourProviderImpl {
     system_command: SystemCommandStorage,
 }
 
 interfaces!(SystemCommandComponentBehaviourProviderImpl: dyn ComponentBehaviourProvider);
 
-#[component]
-impl SystemCommandComponentBehaviourProviderImpl {
-    #[provides]
-    fn new() -> Self {
-        Self {
-            system_command: create_system_command_storage(),
-        }
-    }
-}
+impl SystemCommandComponentBehaviourProviderImpl {}
 
 #[async_trait]
 #[provides]
@@ -63,15 +56,17 @@ impl SystemCommandComponentBehaviourProvider for SystemCommandComponentBehaviour
     }
 
     fn remove_system_command(&self, entity_instance: Arc<ReactiveEntityInstance>) {
-        self.system_command.0.write().unwrap().remove(&entity_instance.id);
-        entity_instance.remove_behaviour(SYSTEM_COMMAND);
-        debug!("Removed component behaviour {} from entity instance {}", SYSTEM_COMMAND, entity_instance.id);
+        if let Some(_) = self.system_command.0.write().unwrap().remove(&entity_instance.id) {
+            entity_instance.remove_behaviour(SYSTEM_COMMAND);
+            debug!("Removed component behaviour {} from entity instance {}", SYSTEM_COMMAND, entity_instance.id);
+        }
     }
 
     fn remove_by_id(&self, id: Uuid) {
         if self.system_command.0.write().unwrap().contains_key(&id) {
-            self.system_command.0.write().unwrap().remove(&id);
-            debug!("Removed component behaviour {} from entity instance {}", SYSTEM_COMMAND, id);
+            if let Some(_) = self.system_command.0.write().unwrap().remove(&id) {
+                debug!("Removed component behaviour {} from entity instance {}", SYSTEM_COMMAND, id);
+            }
         }
     }
 }
